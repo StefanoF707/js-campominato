@@ -5,3 +5,19 @@
 // Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
+
+
+// creare una array vuota
+var bombs = [];
+
+// riempirla tramite un ciclo con 16 numeri casuali evitando di inserire due numeri uguali
+while ( bombs.length < 16 ) {
+    var randomNumber = randomNumberGenerator(1, 101);
+    var doubleNumber = checkIfNumberAlreadyExist(bombs, randomNumber);
+    if (doubleNumber == false) {
+        bombs.push(randomNumber);
+    }
+}
+console.log(bombs);
+
+// chiedere all'utente di inserire un numero (sempre compreso tra 1 e 100) 100 - 16 volte
