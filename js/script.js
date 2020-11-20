@@ -1,39 +1,49 @@
-// Il computer deve generare 16 numeri casuali tra 1 e 100.
-// I numeri non possono essere duplicati.
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
-// L’utente non può inserire più volte lo stesso numero.
-// Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
-// La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-
-// inizializzo delle variabili
-var score = 0;
-var attempts = (100 - 16);
-
-// creare una array vuota per le caselle con le bombe
+// variabili inizializzate
+var range;
 var bombs = [];
-// riempirla tramite un ciclo con 16 numeri casuali evitando di inserire due numeri uguali
+var userChoise = [];
+//FINE variabili inizializzate
+
+// selezione difficoltà
+var difficult = parseInt(prompt("Seleziona difficoltà\n0 = Facile\n1 = Intermedio\n2 = Difficile"));
+
+switch (difficult) {
+    case 0:
+        range = 100;
+        break;
+    case 1:
+        range = 80;
+        break;
+    case 2:
+        range = 50;
+        break;
+    default:
+        range = 100;
+}
+//FINE selezione difficoltà
+
+// creazione numeri bomba
 while ( bombs.length < 16 ) {
-    var randomNumber = randomNumberGenerator(1, 100);
+    var randomNumber = randomNumberGenerator(1, range);
     var doubleBombsNumber = checkIfNumberAlreadyExist(bombs, randomNumber);
     if (doubleBombsNumber == false) {
         bombs.push(randomNumber);
     }
 }
 console.log("I numeri bomba sono:", bombs);
+//FINE creazione numeri bomba
 
-// creare un'altra array vuota per memorizzare le scelte dell'utente
-var userChoise = [];
-
-// GIOCO
+// gioco
 var gameOver = false;
+var attempts = range - bombs.length;
 var score = 0;
 
 while (userChoise.length < attempts && gameOver == false) {
+
     var userNumber = parseInt(prompt("Inserisci un numero"));
     var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
-
     var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
+
     if (checkGameOver == true) {
         alert("HAI PERSO\npunteggio: " + score);
         gameOver = true;
@@ -44,10 +54,13 @@ while (userChoise.length < attempts && gameOver == false) {
         userChoise.push(userNumber);
         score++;
     }
+    
     if (score == attempts) {
         alert("HAI VINTO\npunteggio: " + score);
     }
 }
+//FINE gioco
+
 console.log("I numeri da te scelti sono:", userChoise);
 if (score == 1) {
     console.log("Il tuo punteggio è di:", score, "punto!");
