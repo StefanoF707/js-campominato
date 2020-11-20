@@ -6,6 +6,9 @@
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
+// inizializzo delle variabili
+var score = 0;
+var attempts = (100 - 16);
 
 // creare una array vuota per le caselle con le bombe
 var bombs = [];
@@ -17,19 +20,37 @@ while ( bombs.length < 16 ) {
         bombs.push(randomNumber);
     }
 }
-console.log(bombs);
+console.log("I numeri bomba sono:", bombs);
 
 // creare un'altra array vuota per memorizzare le scelte dell'utente
 var userChoise = [];
-// chiedere all'utente di inserire un numero (sempre compreso tra 1 e 100) 100 - 16 volte
-while (userChoise.length < (20 - 16)) {
+
+// GIOCO
+var gameOver = false;
+var score = 0;
+
+while (userChoise.length < attempts && gameOver == false) {
     var userNumber = parseInt(prompt("Inserisci un numero"));
     var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
-    if (doubleUserNumber == true) {
-        alert("Non puoi inserire più volte lo stesso numero!");
+
+    var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
+    if (checkGameOver == true) {
+        alert("HAI PERSO\npunteggio: " + score);
+        gameOver = true;
+        userChoise.push(userNumber);
+    } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > 100) ) {
+        alert("Scelta non valida!");
     } else {
         userChoise.push(userNumber);
+        score++;
+    }
+    if (score == attempts) {
+        alert("HAI VINTO\npunteggio: " + score);
     }
 }
-
-console.log(userChoise);
+console.log("I numeri da te scelti sono:", userChoise);
+if (score == 1) {
+    console.log("Il tuo punteggio è di:", score, "punto!");
+} else {
+    console.log("Il tuo punteggio è di:", score, "punti!");
+}
