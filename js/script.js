@@ -41,31 +41,52 @@ playButton.addEventListener("click",
         //FINE creazione numeri bomba
 
         // gioco
-        var gameOver = false;
-        var attempts = range - bombs.length;
-        var score = 0;
+        var checkButton = document.getElementById("check_btn");
 
-        while (userChoise.length < attempts && gameOver == false) {
+        checkButton.addEventListener("click",
+            function() {
 
-            var userNumber = parseInt(prompt("Inserisci un numero"));
-            var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
-            var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
+                var numberInput = document.getElementById("number_input").value;
 
-            if (checkGameOver == true) {
-                alert("HAI PERSO\npunteggio: " + score);
-                gameOver = true;
-                userChoise.push(userNumber);
-            } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
-                alert("Scelta non valida!");
-            } else {
-                userChoise.push(userNumber);
-                score++;
+                if (numberInput < 1 || numberInput > range || isNaN(numberInput)) {
+                    alert("Inserisci un numero compreso tra 1 e " + range);
+                } else {
+
+                    // creo degli li e gli assegno una classe
+                    var  numberGrid = document.getElementById("number_grid");
+                    var itemCreated = document.createElement("li");
+                    itemCreated.className = "right_number";
+
+                    numberGrid.appendChild(itemCreated);
+                    itemCreated.appendChild(document.createTextNode(numberInput));
+                }
+
             }
+        );
 
-            if (score == attempts) {
-                alert("HAI VINTO\npunteggio: " + score);
-            }
-        }
+        // var gameOver = false;
+        // var attempts = range - bombs.length;
+        // var score = 0;
+        //
+        //
+        // var userNumber = parseInt(prompt("Inserisci un numero"));
+        // var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
+        // var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
+        //
+        // if (checkGameOver == true) {
+        //     alert("HAI PERSO\npunteggio: " + score);
+        //     gameOver = true;
+        //     userChoise.push(userNumber);
+        // } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
+        //     alert("Scelta non valida!");
+        // } else {
+        //     userChoise.push(userNumber);
+        //     score++;
+        // }
+        //
+        // if (score == attempts) {
+        //     alert("HAI VINTO\npunteggio: " + score);
+        // }
         // FINE gioco
 
         console.log("I numeri da te scelti sono:", userChoise);

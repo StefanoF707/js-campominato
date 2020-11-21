@@ -15,7 +15,32 @@ body {
 
 h1 {
     text-transform: uppercase;
-    font-size: 60px;
+    font-size: 50px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 5px 4px 0px #000;
+    animation: change_color 2s infinite;
+}
+
+@keyframes change_color {
+    0% {
+        color: #fff;
+    }
+    25% {
+        color: #f00;
+    }
+    50% {
+        color: #61ff00:
+    }
+    75% {
+        color: #00f;
+    }
+    100% {
+        color: #fff;
+    }
+}
+
+ul {
+    list-style: none;
 }
 
 header > #navbar {
@@ -28,7 +53,8 @@ header > #navbar {
     left: 0;
     top: 0;
     padding: 0 50px;
-    background: #000;
+    background: #710080;
+    z-index: 2;
 }
 
 #navbar > #difficult {
@@ -55,7 +81,6 @@ main {
     display: flex;
     height: calc(100vh - 100px);
     margin-top: 100px;
-    background-image: url("https://i.pinimg.com/originals/f0/e9/56/f0e956568293387bc53bb514cfc5cf92.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -105,7 +130,7 @@ main > .main_left {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-.card_bottom .input_container > input#number {
+.card_bottom .input_container > input#number_input {
     text-align: center;
     width: 80px;
     padding: 10px 0;
@@ -132,4 +157,17 @@ main > .main_left {
 main > .main_right {
     width: 70%;
     border: 1px solid #fff;
+}
+
+ul#number_grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul#number_grid > li {
+    width: calc(100% / 10 - 30px);
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 15px;
+    border: 1px solid #000;
 }

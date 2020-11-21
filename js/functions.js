@@ -11,3 +11,7 @@ function checkIfNumberAlreadyExist(array, element) {
     }
     return check;
 }
+
+function addNumber(e) {
+
+}
