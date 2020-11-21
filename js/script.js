@@ -55,7 +55,7 @@ playButton.addEventListener("click",
                 alert("HAI PERSO\npunteggio: " + score);
                 gameOver = true;
                 userChoise.push(userNumber);
-            } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > 100) ) {
+            } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
                 alert("Scelta non valida!");
             } else {
                 userChoise.push(userNumber);
@@ -146,7 +146,7 @@ playButton.addEventListener("click",
 //         alert("HAI PERSO\npunteggio: " + score);
 //         gameOver = true;
 //         userChoise.push(userNumber);
-//     } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > 100) ) {
+//     } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
 //         alert("Scelta non valida!");
 //     } else {
 //         userChoise.push(userNumber);
