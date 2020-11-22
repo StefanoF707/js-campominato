@@ -1,102 +1,72 @@
-var playButton = document.getElementById("play_btn");
+// variabili inizializzate
+var range;
+var bombs = [];
+var userChoise = [];
+//FINE variabili inizializzate
 
-playButton.addEventListener("click",
-    function() {
-        // variabili inizializzate
-        var range;
-        var bombs = [];
-        var userChoise = [];
-        //FINE variabili inizializzate
+// selezione difficoltà
+var difficult = parseInt(prompt("Seleziona difficoltà\n0 = Facile\n1 = Intermedio\n2 = Difficile"));
 
-        // selezione difficoltà
-        var difficult = document.getElementById("difficult").value;
+switch (difficult) {
+    case 0:
+        range = 100;
+        break;
+    case 1:
+        range = 80;
+        break;
+    case 2:
+        range = 50;
+        break;
+    default:
+        range = 100;
+}
+//FINE selezione difficoltà
 
-        switch (difficult) {
-            case "easy":
-                range = 100;
-                break;
-            case "medium":
-                range = 80;
-                break;
-            case "hard":
-                range = 50;
-                break;
-            case "not_work":
-                alert("Seleziona un livello di difficoltà!");
-                break;
-            default:
-                range = 100;
-        }
-        // FINE selezione difficoltà
-
-        // creazione numeri bomba
-        while ( bombs.length < 16 ) {
-            var randomNumber = randomNumberGenerator(1, range);
-            var doubleBombsNumber = checkIfNumberAlreadyExist(bombs, randomNumber);
-            if (doubleBombsNumber == false) {
-                bombs.push(randomNumber);
-            }
-        }
-        console.log("I numeri bomba sono:", bombs);
-        //FINE creazione numeri bomba
-
-        // gioco
-        var checkButton = document.getElementById("check_btn");
-
-        checkButton.addEventListener("click",
-            function() {
-
-                var numberInput = document.getElementById("number_input").value;
-
-                if (numberInput < 1 || numberInput > range || isNaN(numberInput)) {
-                    alert("Inserisci un numero compreso tra 1 e " + range);
-                } else {
-
-                    // creo degli li e gli assegno una classe
-                    var  numberGrid = document.getElementById("number_grid");
-                    var itemCreated = document.createElement("li");
-                    itemCreated.className = "right_number";
-
-                    numberGrid.appendChild(itemCreated);
-                    itemCreated.appendChild(document.createTextNode(numberInput));
-                }
-
-            }
-        );
-
-        // var gameOver = false;
-        // var attempts = range - bombs.length;
-        // var score = 0;
-        //
-        //
-        // var userNumber = parseInt(prompt("Inserisci un numero"));
-        // var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
-        // var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
-        //
-        // if (checkGameOver == true) {
-        //     alert("HAI PERSO\npunteggio: " + score);
-        //     gameOver = true;
-        //     userChoise.push(userNumber);
-        // } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
-        //     alert("Scelta non valida!");
-        // } else {
-        //     userChoise.push(userNumber);
-        //     score++;
-        // }
-        //
-        // if (score == attempts) {
-        //     alert("HAI VINTO\npunteggio: " + score);
-        // }
-        // FINE gioco
-
-        console.log("I numeri da te scelti sono:", userChoise);
-        if (score == 1) {
-            console.log("Il tuo punteggio è di:", score, "punto!");
-        } else {
-            console.log("Il tuo punteggio è di:", score, "punti!");
-        }
+// creazione numeri bomba
+while ( bombs.length < 16 ) {
+    var randomNumber = randomNumberGenerator(1, range);
+    var doubleBombsNumber = checkIfNumberAlreadyExist(bombs, randomNumber);
+    if (doubleBombsNumber == false) {
+        bombs.push(randomNumber);
     }
-);
+}
+console.log("I numeri bomba sono:", bombs);
+//FINE creazione numeri bomba
+
+// gioco
+var gameOver = false;
+var attempts = range - bombs.length;
+var score = 0;
+
+while (userChoise.length < attempts && gameOver == false) {
+
+    var userNumber = parseInt(prompt("Inserisci un numero"));
+    var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
+    var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
+
+    if (checkGameOver == true) {
+        alert("HAI PERSO\npunteggio: " + score);
+        gameOver = true;
+        userChoise.push(userNumber);
+    } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
+        alert("Scelta non valida!");
+    } else {
+        userChoise.push(userNumber);
+        score++;
+    }
+
+    if (score == attempts) {
+        alert("HAI VINTO\npunteggio: " + score);
+    }
+}
+//FINE gioco
+
+console.log("I numeri da te scelti sono:", userChoise);
+if (score == 1) {
+    console.log("Il tuo punteggio è di:", score, "punto!");
+} else {
+    console.log("Il tuo punteggio è di:", score, "punti!");
+}
 
 
 
@@ -117,72 +87,144 @@ playButton.addEventListener("click",
 
 
 
-// // variabili inizializzate
-// var range;
-// var bombs = [];
-// var userChoise = [];
-// //FINE variabili inizializzate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var playButton = document.getElementById("play_btn");
 //
-// // selezione difficoltà
-// var difficult = parseInt(prompt("Seleziona difficoltà\n0 = Facile\n1 = Intermedio\n2 = Difficile"));
+// playButton.addEventListener("click",
+//     function() {
+//         // variabili inizializzate
+//         var range = 0;
+//         var bombs = [];
+//         //FINE variabili inizializzate
 //
-// switch (difficult) {
-//     case 0:
-//         range = 100;
-//         break;
-//     case 1:
-//         range = 80;
-//         break;
-//     case 2:
-//         range = 50;
-//         break;
-//     default:
-//         range = 100;
-// }
-// //FINE selezione difficoltà
+//         // selezione difficoltà
+//         var difficult = document.getElementById("difficult").value;
 //
-// // creazione numeri bomba
-// while ( bombs.length < 16 ) {
-//     var randomNumber = randomNumberGenerator(1, range);
-//     var doubleBombsNumber = checkIfNumberAlreadyExist(bombs, randomNumber);
-//     if (doubleBombsNumber == false) {
-//         bombs.push(randomNumber);
+//         switch (difficult) {
+//             case "easy":
+//                 range = 100;
+//                 break;
+//             case "medium":
+//                 range = 80;
+//                 break;
+//             case "hard":
+//                 range = 50;
+//                 break;
+//             case "not_work":
+//                 alert("Seleziona un livello di difficoltà!");
+//                 break;
+//             default:
+//                 range = 100;
+//         }
+//         // FINE selezione difficoltà
+//
+//         // creazione numeri bomba
+//         while ( bombs.length < 16 ) {
+//             var randomNumber = randomNumberGenerator(1, range);
+//             var doubleBombsNumber = checkIfNumberAlreadyExist(bombs, randomNumber);
+//             if (doubleBombsNumber == false) {
+//                 bombs.push(randomNumber);
+//             }
+//         }
+//         console.log("I numeri bomba sono:", bombs);
+//         //FINE creazione numeri bomba
+//
+//         // gioco
+//         var checkButton = document.getElementById("check_btn");
+//
+//         checkButton.addEventListener("click",
+//             function() {
+//
+//                 var userNumber = document.getElementById("number_input").value;
+//
+//                 if (userNumber < 1 || userNumber > range || isNaN(userNumber)) {
+//                     alert("Inserisci un numero compreso tra 1 e " + range);
+//                 } else {
+//
+//                     // creo degli li e gli assegno una classe
+//                     var  numberGrid = document.getElementById("number_grid");
+//                     var itemCreated = document.createElement("li");
+//                     itemCreated.className = "right_number";
+//                     numberGrid.appendChild(itemCreated);
+//                     itemCreated.appendChild(document.createTextNode(userNumber));
+//
+//                     var game = game();
+//
+//                     // var userChoise = [];
+//                     // var gameOver = false;
+//                     // var attempts = range - bombs.length;
+//                     // var score = 0;
+//                     //
+//                     // var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
+//                     // var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
+//                     //
+//                     // if (checkGameOver == true) {
+//                     //    alert("HAI PERSO\npunteggio: " + score);
+//                     //    gameOver = true;
+//                     //    userChoise.push(parseInt(userNumber));
+//                     //    itemCreated.className = "wrong_number";
+//                     // } else {
+//                     //     userChoise.push(parseInt(userNumber));
+//                     //     score = score + 1;
+//                     //     document.getElementById("score").innerHTML = score;
+//                     // }
+//                     //
+//                     // console.log(userChoise);
+//
+//
+//                 }
+//
+//             }
+//         );
+//
+//         var gameOver = false;
+//         var attempts = range - bombs.length;
+//         var score = 0;
+//
+//
+//         var userNumber = parseInt(prompt("Inserisci un numero"));
+//         var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
+//         var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
+//
+//         if (checkGameOver == true) {
+//             alert("HAI PERSO\npunteggio: " + score);
+//             gameOver = true;
+//             userChoise.push(userNumber);
+//         } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
+//             alert("Scelta non valida!");
+//         } else {
+//             userChoise.push(userNumber);
+//             score++;
+//         }
+//
+//         if (score == attempts) {
+//             alert("HAI VINTO\npunteggio: " + score);
+//         }
+//         FINE gioco
+//
+//
+//         if (score == 1) {
+//             console.log("Il tuo punteggio è di:", score, "punto!");
+//         } else {
+//             console.log("Il tuo punteggio è di:", score, "punti!");
+//         }
 //     }
-// }
-// console.log("I numeri bomba sono:", bombs);
-// //FINE creazione numeri bomba
-//
-// // gioco
-// var gameOver = false;
-// var attempts = range - bombs.length;
-// var score = 0;
-//
-// while (userChoise.length < attempts && gameOver == false) {
-//
-//     var userNumber = parseInt(prompt("Inserisci un numero"));
-//     var doubleUserNumber = checkIfNumberAlreadyExist(userChoise, userNumber);
-//     var checkGameOver = checkIfNumberAlreadyExist(bombs, userNumber);
-//
-//     if (checkGameOver == true) {
-//         alert("HAI PERSO\npunteggio: " + score);
-//         gameOver = true;
-//         userChoise.push(userNumber);
-//     } else if ( (doubleUserNumber == true) || isNaN(userNumber) || (userNumber < 1 || userNumber > range) ) {
-//         alert("Scelta non valida!");
-//     } else {
-//         userChoise.push(userNumber);
-//         score++;
-//     }
-//
-//     if (score == attempts) {
-//         alert("HAI VINTO\npunteggio: " + score);
-//     }
-// }
-// //FINE gioco
-//
-// console.log("I numeri da te scelti sono:", userChoise);
-// if (score == 1) {
-//     console.log("Il tuo punteggio è di:", score, "punto!");
-// } else {
-//     console.log("Il tuo punteggio è di:", score, "punti!");
-// }
+// );

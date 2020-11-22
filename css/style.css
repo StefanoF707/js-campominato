@@ -5,6 +5,7 @@
 }
 
 body {
+    font-family: 'Press Start 2P', cursive;
     background: #383838;
     color: #fff;
 }
@@ -16,9 +17,8 @@ body {
 h1 {
     text-transform: uppercase;
     font-size: 50px;
-    font-family: 'Press Start 2P', cursive;
     text-shadow: 5px 4px 0px #000;
-    animation: change_color 2s infinite;
+    animation: change_color 1.3s infinite;
 }
 
 @keyframes change_color {
@@ -29,7 +29,7 @@ h1 {
         color: #f00;
     }
     50% {
-        color: #61ff00:
+        color: #61ff00;
     }
     75% {
         color: #00f;
@@ -86,8 +86,12 @@ main {
 }
 
 main > .main_left {
-    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 30%;
+    height: calc(100vh - 100px);
+    margin-top: 100px;
 }
 
 .main_left > .card {
@@ -104,7 +108,7 @@ main > .main_left {
 }
 
 .card_top > h2 {
-    font-size: 45px;
+    font-size: 35px;
     margin-bottom: 30px;
     text-transform: uppercase;
 }
@@ -134,8 +138,9 @@ main > .main_left {
     text-align: center;
     width: 80px;
     padding: 10px 0;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .card_bottom > #check_btn {
@@ -145,7 +150,7 @@ main > .main_left {
     background: #f94504;
     margin-top: 30px;
     border-radius: 10px;
-    font-size: 35px;
+    font-size: 20px;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -156,18 +161,25 @@ main > .main_left {
 
 main > .main_right {
     width: 70%;
-    border: 1px solid #fff;
+    margin-left: 30%;
+    padding: 40px 0;
 }
 
 ul#number_grid {
     display: flex;
     flex-wrap: wrap;
+    padding: 20px;
 }
 
 ul#number_grid > li {
     width: calc(100% / 10 - 30px);
-    font-size: 20px;
+    font-size: 21px;
     text-align: center;
-    margin: 10px 15px;
-    border: 1px solid #000;
+    margin: 15px 15px;
+}
+.right_number {
+    color: #0cd40c;
+}
+.wrong_number {
+    color: #e60b0b;
 }
