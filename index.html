@@ -21,7 +21,7 @@
                     <option value="hard">Difficile</option>
                 </select>
 
-                <h1>space minefield</h1>
+                <h1>minefield</h1>
 
                 <span id="play_btn">GIOCA</span>
 
@@ -30,12 +30,12 @@
         <!-- /FixedBar -->
 
         <!-- gioco -->
-        <main>
+        <main id="game">
             <div class="main_left">
                 <div class="card">
                     <div class="card_top">
                         <h2>punteggio</h2>
-                        <span id="score">0</span>
+                        <span id="score"></span>
                     </div>
                     <div class="card_bottom">
                         <div class="input_container">
@@ -48,13 +48,27 @@
             </div>
 
             <div class="main_right">
-                <ul id="number_grid">
-                </ul>
+                <h4>inserisci un numero da 1 a <span id="range"></span></h4>
+                <ul id="number_grid"></ul>
             </div>
 
+            <div id="game-over" class="layover">
+                <h2>game over</h2>
+                <span id="restart-btn">riprova</span>
+            </div>
 
+            <div id="win" class="layover">
+                <h2>you win</h2>
+            </div>
         </main>
         <!-- /gioco -->
+
+        <!-- Introduzione -->
+        <main id="introduction">
+            <h2>Benvenuto su campo minato</h2>
+            <p>Per cominciare la tua partita, seleziona una difficoltà e clicca su "GIOCA".</p>
+        </main>
+        <!-- Introduzione -->
 
         <script src="js/functions.js" charset="utf-8"></script>
         <script src="js/script.js" charset="utf-8"></script>
